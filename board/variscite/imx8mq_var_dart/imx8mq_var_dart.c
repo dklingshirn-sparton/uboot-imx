@@ -103,10 +103,6 @@ static int setup_fec(void)
 #endif
 
 
-IMX8MQ_PAD_NAND_WE_B__GPIO3_IO17
-
-
-
 #define PMIC_EN2_KEY IMX_GPIO_NR(3, 17)
 #define PMIC_EN3_KEY IMX_GPIO_NR(3, 18)
 #define PMIC_EN4_KEY IMX_GPIO_NR(3, 19)
