@@ -102,6 +102,23 @@ static int setup_fec(void)
 }
 #endif
 
+
+IMX8MQ_PAD_NAND_WE_B__GPIO3_IO17
+
+
+
+#define PMIC_EN2_KEY IMX_GPIO_NR(3, 17)
+#define PMIC_EN3_KEY IMX_GPIO_NR(3, 18)
+#define PMIC_EN4_KEY IMX_GPIO_NR(3, 19)
+#define PMIC_PAD_CTRL	(PAD_CTL_DSE1 | PAD_CTL_FSEL2)
+
+static iomux_v3_cfg_t const pmic_pads[] = {
+	IMX8MQ_PAD_NAND_WE_B__GPIO3_IO17 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
+	IMX8MQ_PAD_NAND_WP_B__GPIO3_IO18 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
+	IMX8MQ_PAD_SAI5_RXFS__GPIO3_IO19 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
+};
+
+
 int board_init(void)
 {
 #ifdef CONFIG_FEC_MXC
@@ -111,6 +128,15 @@ int board_init(void)
 #if defined(CONFIG_USB_DWC3) || defined(CONFIG_USB_XHCI_IMX8M)
 	init_usb_clk();
 #endif
+
+	printf("djk - in board_init\n");
+	imx_iomux_v3_setup_multiple_pads(pmic_pads, ARRAY_SIZE(pmic_pads));
+	gpio_request(PMIC_EN2_KEY, "EN2");
+	gpio_direction_output(PMIC_EN2_KEY, 1);
+	gpio_request(PMIC_EN3_KEY, "EN3");
+	gpio_direction_output(PMIC_EN3_KEY, 1);
+	gpio_request(PMIC_EN4_KEY, "EN4");
+	gpio_direction_output(PMIC_EN4_KEY, 1);
 
 	return 0;
 }
