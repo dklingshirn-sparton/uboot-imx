@@ -112,14 +112,14 @@
 	"fdt_high=0xffffffffffffffff\0"		\
 	"boot_fdt=try\0" \
 	"ip_dyn=yes\0" \
-	"fdt_file=undefined\0" \
+	"fdt_file=fsl-imx8mq-var-dart-emmc-wifi-sparton.dtb\0" \
 	"mmcdev="__stringify(CONFIG_SYS_MMC_ENV_DEV)"\0" \
 	"mmcblk=1\0" \
 	"mmcautodetect=yes\0" \
 	"mmcpart=1\0" \
 	"m4_addr=0x7e0000\0" \
-	"m4_bin=hello_world.bin\0" \
-	"use_m4=no\0" \
+	"m4_bin=HeaterRTOSBF.bin\0" \
+	"use_m4=yes\0" \
 	"loadm4bin=load mmc ${mmcdev}:${mmcpart} ${m4_addr} ${bootdir}/${m4_bin}\0" \
 	"runm4bin=" \
 		"if test ${m4_addr} = 0x7e0000; then " \
