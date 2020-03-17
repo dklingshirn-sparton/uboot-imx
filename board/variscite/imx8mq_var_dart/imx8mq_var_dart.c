@@ -102,7 +102,8 @@ static int setup_fec(void)
 }
 #endif
 
-
+#define BARCODE_READER_EN IMX_GPIO_NR(5, 29)
+#define FAN_ENABLE IMX_GPIO_NR(1, 15)
 #define PMIC_EN2_KEY IMX_GPIO_NR(3, 17)
 #define PMIC_EN3_KEY IMX_GPIO_NR(3, 18)
 #define PMIC_EN4_KEY IMX_GPIO_NR(3, 19)
@@ -112,6 +113,8 @@ static iomux_v3_cfg_t const pmic_pads[] = {
 	IMX8MQ_PAD_NAND_WE_B__GPIO3_IO17 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
 	IMX8MQ_PAD_NAND_WP_B__GPIO3_IO18 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
 	IMX8MQ_PAD_SAI5_RXFS__GPIO3_IO19 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
+	IMX8MQ_PAD_UART4_TXD__GPIO5_IO29 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
+	IMX8MQ_PAD_GPIO1_IO15__GPIO1_IO15 | MUX_PAD_CTRL(PMIC_PAD_CTRL),
 };
 
 
@@ -133,6 +136,10 @@ int board_init(void)
 	gpio_direction_output(PMIC_EN3_KEY, 1);
 	gpio_request(PMIC_EN4_KEY, "EN4");
 	gpio_direction_output(PMIC_EN4_KEY, 1);
+	gpio_request(FAN_ENABLE, "FE");
+	gpio_direction_output(FAN_ENABLE, 1);
+	gpio_request(BARCODE_READER_EN, "BCEN");
+	gpio_direction_output(BARCODE_READER_EN, 0);
 
 	return 0;
 }
