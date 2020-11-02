@@ -118,7 +118,7 @@
 	"mmcautodetect=yes\0" \
 	"mmcpart=1\0" \
 	"m4_addr=0x7e0000\0" \
-	"m4_bin=HeaterRTOSBF.bin\0" \
+	"m4_bin=HeaterRTOS.bin\0" \
 	"use_m4=yes\0" \
 	"loadm4bin=load mmc ${mmcdev}:${mmcpart} ${m4_addr} ${bootdir}/${m4_bin}\0" \
 	"runm4bin=" \
